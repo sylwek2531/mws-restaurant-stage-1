@@ -8,6 +8,7 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  DBHelper.startServiceWorker();
   fetchNeighborhoods();
   fetchCuisines();
 });
@@ -141,6 +142,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', 'Picture of restaurant'+ restaurant.name);
   li.append(image);
 
   const name = document.createElement('h1');
@@ -149,14 +151,17 @@ createRestaurantHTML = (restaurant) => {
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.className = 'restaurant-neighborhood';
   li.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
-  li.append(address);
+    address.className = 'restaurant-address';
+    li.append(address);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+    more.className = 'restaurant-details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 

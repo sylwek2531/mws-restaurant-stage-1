@@ -51,18 +51,22 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+  name.tabIndex='0';
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.tabIndex = '0';
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.className = 'restaurant-img';
+    image.setAttribute('alt','Picture of restaurant' + restaurant.name);
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+    cuisine.tabIndex= '0';
 
-  // fill operating hours
+    // fill operating hours
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
@@ -80,13 +84,17 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 
     const day = document.createElement('td');
     day.innerHTML = key;
-    row.appendChild(day);
+      day.tabIndex= '0';
+      row.appendChild(day);
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
-    row.appendChild(time);
+      time.tabIndex= '0';
+      row.appendChild(time);
 
     hours.appendChild(row);
+      hours.tabIndex= '0';
+
   }
 }
 
@@ -97,12 +105,14 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
-  container.appendChild(title);
+    title.tabIndex= '0';
+    container.appendChild(title);
 
   if (!reviews) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
-    container.appendChild(noReviews);
+      noReviews.tabIndex= '0';
+      container.appendChild(noReviews);
     return;
   }
   const ul = document.getElementById('reviews-list');
@@ -123,14 +133,20 @@ createReviewHTML = (review) => {
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
+    date.className = 'review-date';
+    date.tabIndex= '0';
   li.appendChild(date);
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
+    rating.className = 'review-rating';
+    rating.tabIndex= '0';
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+    comments.className = 'review-comment';
+    comments.tabIndex= '0';
   li.appendChild(comments);
 
   return li;
@@ -143,7 +159,8 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
-  breadcrumb.appendChild(li);
+    li.setAttribute("aria-current", "page");
+    breadcrumb.appendChild(li);
 }
 
 /**
