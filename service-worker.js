@@ -36,8 +36,18 @@ self.addEventListener('fetch', function (event) {
         caches.match(event.request).then(function(resp) {
             return resp || fetch(event.request);
         })
-            .catch(function(err) {
-                console.log('Service worker: fetch failed: ' + err);
-            })
     );
+});
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.filter(function(cacheName) {
+                    return cacheName.startsWith('mnw-restaurant-stage-') && cacheName !== restaurantCache;
+                }).map(function(cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+        })
+    )
 });
