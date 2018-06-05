@@ -1,9 +1,17 @@
-const restaurantCache = 'mnw-restaurant-stage-1';
+const restaurantCache = 'mnw-restaurant-stage-v';
+const contentImgsCahce = 'mnw-restaurant-stage-img';
+const allCaches = [
+    restaurantCache,
+    contentImgsCahce
+];
 const urlsToFetch = [
     '/index.html',
+    '/manifest.json',
     '/restaurant.html',
     '/service-worker.js',
     '/js/dbhelper.js',
+    '/js/idb.js',
+    '/js/idbindex.js',
     '/js/main.js',
     '/js/restaurant_info.js',
     '/css/styles.css',
@@ -32,18 +40,21 @@ self.addEventListener('install', function (event) {
 
 
 self.addEventListener('fetch', function (event) {
+
     event.respondWith(
-        caches.match(event.request).then(function(resp) {
-            return resp || fetch(event.request);
+        fetch(event.request).catch(function() {
+            return caches.match(event.request);
         })
     );
+
 });
+
 self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
             return Promise.all(
                 cacheNames.filter(function(cacheName) {
-                    return cacheName.startsWith('mnw-restaurant-stage-') && cacheName !== restaurantCache;
+                    return cacheName.startsWith('mnw-restaurant-stage-v') && !allCaches.includes(cacheName);
                 }).map(function(cacheName) {
                     return caches.delete(cacheName);
                 })
