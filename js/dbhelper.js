@@ -30,7 +30,11 @@ class DBHelper {
    */
   static fetchRestaurantServer(callback)
   {
-      fetch(`${DBHelper.DATABASE_URL}`).then(response => response.json()).then(restaurant => callback(null, restaurant)).catch(function (error) {
+
+      fetch(`${DBHelper.DATABASE_URL}`)
+          .then(response => response.json())
+          .then(restaurant => callback(null, restaurant))
+          .catch(function (error) {
           console.log(error);
       });
   };
@@ -40,11 +44,14 @@ class DBHelper {
      */
     static fetchRestaurants(callback)
     {
-        var dbPromise = idb.open('mws-restaurant');
+        const dbPromise = idb.open('mws-restaurant');
         dbPromise.then(function(db) {
-            var tx = db.transaction('restaurants', 'readonly');
-            var store = tx.objectStore('restaurants');
-            return store.getAll();
+
+              var tx = db.transaction('restaurants', 'readonly');
+              var store = tx.objectStore('restaurants');
+              return store.getAll();
+
+
         }).then(restaurants => callback(null, restaurants));
     }
 
@@ -63,6 +70,7 @@ class DBHelper {
   //   };
   //   xhr.send();
   // }
+
 
   /**
    * Fetch a restaurant by its ID.

@@ -292,6 +292,28 @@ nav h1 a {
   flex-flow: row wrap;
   justify-content: center;
 }
+
+
+/*add new comment */
+.form-wrapper{
+  padding: 30px 0 80px 0;
+}
+.inp-group{
+  display: flex;
+  flex-flow: column ;
+}
+.inp-group input{
+  height: 40px;
+  border-radius: 4px;
+  padding: 0 10px;
+  border: none;
+  /*padding: 10px;*/
+}
+.inp-group label{
+  padding: 10px;
+}
+
+/*end add new comment*/
 @media screen and (max-width: 992px) {
 #breadcrumb{
   width: 100%;
