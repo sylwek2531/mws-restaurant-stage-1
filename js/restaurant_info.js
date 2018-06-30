@@ -49,7 +49,7 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const name = document.getElementById('restaurant-name');
+    const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 
   const address = document.getElementById('restaurant-address');
@@ -63,6 +63,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
+  const restId = document.getElementById("restId");
+  restId.value = restaurant.id;
     // fill operating hours
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
@@ -126,7 +128,7 @@ createReviewHTML = (review) => {
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  date.innerHTML = new Date(review.createdAt).toLocaleDateString("en-US");
     date.className = 'review-date';
   li.appendChild(date);
 

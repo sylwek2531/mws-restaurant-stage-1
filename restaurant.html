@@ -49,23 +49,26 @@
     </section>
     <!-- End reviews -->
     <!--add new reviews-->
-    <form id="new-review">
+    <section id="new-review">
+        <form id="new-review-form" >
         <div class="form-wrapper">
+            <input type="hidden" id="restId" name="restaurantId">
             <div class="inp-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" title="name" required>
             </div>
             <div class="inp-group">
                 <label for="rating">Rating</label>
-                <input type="text" id="rating" name="rating" title="rating" required>
+                <input type="number" max="6" min="0" id="rating" name="rating" title="rating" required>
             </div>
             <div class="inp-group">
                 <label for="comments">Comment</label>
                 <textarea id="comments" title="comments" name="comments" rows="9" required></textarea>
             </div>
-            <button type="submit">Send</button>
+            <button class="submit-reviews" type="submit">Send</button>
         </div>
-    </form>
+        </form>
+    </section>
     <!--end add new reviews-->
 </main>
 <!-- End main -->
@@ -82,6 +85,9 @@
 <script type="text/javascript" src="js/dbhelper.js"></script>
 <!-- Main javascript file -->
 <script type="text/javascript" src="js/restaurant_info.js"></script>
+<script type="application/javascript" charset="utf-8" src="js/part3.js"></script>
+<script type="application/javascript" charset="utf-8" src="js/part3-res.js"></script>
+
 <!-- Google Maps -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
 <!-- End scripts -->

@@ -5,6 +5,8 @@ const allCaches = [
     contentImgsCahce
 ];
 const urlsToFetch = [
+    '/js/part3.js',
+    '/js/part3-res.js',
     '/index.html',
     '/manifest.json',
     '/restaurant.html',

@@ -3,25 +3,39 @@ if (!('indexedDB' in window)) {
 }
 
 
-const dbPromise = idb.open('mws-restaurant', 1, function(upgradeDb){
-    if (!upgradeDb.objectStoreNames.contains('restaurants')){
-        var restaurantStore = upgradeDb.createObjectStore('restaurants', {
+const dbPromise = idb.open('mws-restaurant', 1, function (upgradeDb) {
+    if (!upgradeDb.objectStoreNames.contains('restaurants')) {
+        let restaurantStore = upgradeDb.createObjectStore('restaurants', {
             keyPath: 'id'
         });
-    }else{
-        var tx = db.transaction('restaurants', 'readonly');
-        var store = tx.objectStore('restaurants');
-        return store.getAll();
     }
 });
 
 
 dbPromise.then(db => {
     DBHelper.fetchRestaurantServer((error, restaurants) => {
-        console.log(restaurants, 'sdfdsfEWLO');
-        restaurants.forEach(function(data){
-            var tx = db.transaction('restaurants', 'readwrite');
-            var keyValStore = tx.objectStore('restaurants');
+        restaurants.forEach(function (data) {
+            let tx = db.transaction('restaurants', 'readwrite');
+            let keyValStore = tx.objectStore('restaurants');
+            keyValStore.put(data);
+            return tx.complete;
+        })
+    })
+});
+
+const dbPromiseReview = idb.open('mws-reviews', 1, function (upgradeDb) {
+    if (!upgradeDb.objectStoreNames.contains('reviews')) {
+        let reviewsStore = upgradeDb.createObjectStore('reviews', {
+            autoIncrement: true, keyPath: 'id'
+        })
+    }
+});
+
+dbPromiseReview.then(db => {
+    DBHelper.getAllReviewsRestaurant((error, reviews) => {
+        reviews.forEach(function (data) {
+            let tx = db.transaction('reviews', 'readwrite');
+            let keyValStore = tx.objectStore('reviews');
             keyValStore.put(data);
             return tx.complete;
         })
