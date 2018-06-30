@@ -14,7 +14,7 @@
 <body>
   <header>
     <nav class="navigation">
-      <h1><a href="index.html" tabindex="1">Restaurant Reviews</a></h1>
+      <h1><a href="index.html" tabindex="0">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
@@ -25,10 +25,10 @@
     <section>
       <div class="filter-options">
         <h2>Filter Results</h2>
-        <select tabindex="1" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Neighborhood filter">
+        <select tabindex="0" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Neighborhood filter">
           <option value="all">All Neighborhoods</option>
         </select>
-        <select tabindex="2" id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Cuisine filter">
+        <select tabindex="0" id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Cuisine filter">
           <option value="all">All Cuisines</option>
         </select>
       </div>
@@ -40,7 +40,6 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/idbindex.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/part3.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
 
 

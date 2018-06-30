@@ -14,14 +14,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-    createReviewsDB();
 
+    setTimeout(function () {
+        // i don know why i must use set timeout in there
+        //         i must wait to load file and play code?
+              document.querySelectorAll('.restaurant-like').forEach((item) => {
+                  item.addEventListener('click', (event) => {
+                      event.preventDefault();
+                      let restaurantID = item.getAttribute('like-id');
+        
+                      const isFavourite = item.classList.contains('like');
+                      item.classList.toggle('like');
+                      const url = 'http://localhost:1337/restaurants/' + restaurantID + '/?is_favorite=' + !isFavourite;
+                      fetch(url,{
+                          method: 'PUT'
+                      }).then((response) => {
+                          return response.json();
+                      }).catch((err) => {
+                          let resInfo = {'id' : restaurantID, 'is_favourite' : !isFavourite};
+                          DBHelper.updateRestaurantFavourite(resInfo);
+                      });
+        
+        
+                  });
+              });
+          }, 1000)
 });
-
-
-createReviewsDB = () => {
-    DBHelper.createDefferdReviewsDB();
-}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -177,10 +195,14 @@ createRestaurantHTML = (restaurant) => {
 
     const like = document.createElement('button');
     const likeImg = '<svg xmlns="http://www.w3.org/2000/svg"x="0px" y="0px" width="30px" height="30px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve">\n' +
-        '<g><g id="favorite"><path class="favourite-btn" d="M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55    C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z" /></g></g>\</svg>';
+        '<g><g><path class="favourite-btn" d="M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55    C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z" /></g></g>\</svg>';
     like.className = 'restaurant-like';
     like.setAttribute('like-id', restaurant.id);
-    console.log(typeof restaurant.is_favorite);
+    like.setAttribute("name", "favourite-btn");
+    like.setAttribute("role", "button");
+    like.setAttribute("aria-label", "favourite");
+
+
     if(restaurant.is_favorite == 'true'){
         like.classList += ' like';
     }

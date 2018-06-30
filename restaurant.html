@@ -5,92 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Normalize.css for better cross-browser consistency -->
-    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css"/>
+    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
     <!-- Main CSS file -->
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <title>Restaurant Info</title>
 </head>
 
 <body class="inside">
-<!-- Beginning header -->
-<header>
-    <!-- Beginning nav -->
-    <nav class="navigation">
-        <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
-    <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" aria-label="breadcrumbs">
-        <li><a href="/">Home</a></li>
-    </ul>
-    <!-- End breadcrumb -->
-    <!-- End nav -->
-</header>
-<!-- End header -->
+    <!-- Beginning header -->
+    <header>
+        <!-- Beginning nav -->
+        <nav class="navigation">
+            <h1>
+                <a href="/">Restaurant Reviews</a>
+            </h1>
+        </nav>
+        <!-- Beginning breadcrumb -->
+        <ul id="breadcrumb" aria-label="breadcrumbs">
+            <li>
+                <a href="/">Home</a>
+            </li>
+        </ul>
+        <!-- End breadcrumb -->
+        <!-- End nav -->
+    </header>
+    <!-- End header -->
 
-<!-- Beginning main -->
-<main id="maincontent">
-    <!-- Beginning map -->
-    <section id="map-container" tabindex="0">
-        <div id="map" role="application"></div>
-    </section>
-    <!-- End map -->
-    <!-- Beginning restaurant -->
-    <section id="restaurant-container">
-        <h1 id="restaurant-name"></h1>
-        <img id="restaurant-img">
-        <p id="restaurant-cuisine"></p>
-        <p id="restaurant-address"></p>
-        <table id="restaurant-hours"></table>
-    </section>
-    <!-- end restaurant -->
-    <!-- Beginning reviews -->
-    <section id="reviews-container">
-        <ul id="reviews-list"></ul>
-    </section>
-    <!-- End reviews -->
-    <!--add new reviews-->
-    <section id="new-review">
-        <form id="new-review-form" >
-        <div class="form-wrapper">
-            <input type="hidden" id="restId" name="restaurantId">
-            <div class="inp-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" title="name" required>
-            </div>
-            <div class="inp-group">
-                <label for="rating">Rating</label>
-                <input type="number" max="6" min="0" id="rating" name="rating" title="rating" required>
-            </div>
-            <div class="inp-group">
-                <label for="comments">Comment</label>
-                <textarea id="comments" title="comments" name="comments" rows="9" required></textarea>
-            </div>
-            <button class="submit-reviews" type="submit">Send</button>
-        </div>
-        </form>
-    </section>
-    <!--end add new reviews-->
-</main>
-<!-- End main -->
+    <!-- Beginning main -->
+    <main id="maincontent">
+        <!-- Beginning map -->
+        <section id="map-container" tabindex="0">
+            <div id="map" role="application"></div>
+        </section>
+        <!-- End map -->
+        <!-- Beginning restaurant -->
+        <section id="restaurant-container">
+            <h1 id="restaurant-name"></h1>
+            <img id="restaurant-img">
+            <p id="restaurant-cuisine"></p>
+            <p id="restaurant-address"></p>
+            <table id="restaurant-hours"></table>
+        </section>
+        <!-- end restaurant -->
+        <!-- Beginning reviews -->
+        <section id="reviews-container">
+            <ul id="reviews-list"></ul>
+        </section>
+        <!-- End reviews -->
+        <!--add new reviews-->
+        <section id="new-review" class="form-review">
+            <h2 tabindex="0">Reviews</h2>
+            <form id="new-review-form">
+                <div class="form-wrapper">
+                    <input type="hidden" id="restId" name="restaurantId">
+                    <div class="inp-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" title="name" required>
+                    </div>
+                    <div class="inp-group">
+                        <label for="rating">Rating</label>
+                        <input type="number" max="6" min="0" id="rating" name="rating" title="rating" required>
+                    </div>
+                    <div class="inp-group">
+                        <label for="comments">Comment</label>
+                        <textarea id="comments" title="comments" name="comments" rows="9" required></textarea>
+                    </div>
+                    <div class="btn-action">
+                        <button class="submit-reviews" type="submit">Send</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!--end add new reviews-->
+    </main>
+    <!-- End main -->
 
-<!-- Beginning footer -->
-<footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-</footer>
-<!-- End footer -->
+    <!-- Beginning footer -->
+    <footer id="footer">
+        Copyright (c) 2017
+        <a href="/">
+            <strong>Restaurant Reviews</strong>
+        </a> All Rights Reserved.
+    </footer>
+    <!-- End footer -->
 
-<!-- Beginning scripts -->
-<!-- Database helpers -->
-<script type="text/javascript" src="js/idb.js"></script>
-<script type="text/javascript" src="js/dbhelper.js"></script>
-<!-- Main javascript file -->
-<script type="text/javascript" src="js/restaurant_info.js"></script>
-<script type="application/javascript" charset="utf-8" src="js/part3.js"></script>
-<script type="application/javascript" charset="utf-8" src="js/part3-res.js"></script>
+    <!-- Beginning scripts -->
+    <!-- Database helpers -->
+    <script type="text/javascript" src="js/idb.js"></script>
+    <script type="text/javascript" src="js/dbhelper.js"></script>
+    <!-- Main javascript file -->
+    <script type="text/javascript" src="js/restaurant_info.js"></script>
 
-<!-- Google Maps -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
-<!-- End scripts -->
+    <!-- Google Maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
+    <!-- End scripts -->
 
 </body>
 
